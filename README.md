@@ -1,3 +1,3 @@
 # ocellus
-by team Zeal
+by team Zeal <br>
 an application to help navigate for the blind community
