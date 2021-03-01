@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'openMap.dart';
+import 'landingScreen.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -63,7 +64,9 @@ class _HomePageState extends State<HomePage> {
                           },
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/landingScreen');
+                      },
                       child: new Text("SCAN OBJECT",
                           style: TextStyle(
                           fontSize: 50.0,

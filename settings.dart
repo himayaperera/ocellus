@@ -43,35 +43,39 @@ class _SettingsPageState extends State<SettingsPage> {
               children: <Widget>[
                 Text(
                   'Filters',
-                  style: TextStyle(fontSize: fontSize*1.0),
+                  style: TextStyle(fontSize: 10+fontSize*1.0),
                 ),
-                ToggleButtons(
-                  color:Colors.green,
-                  children: [
-                    Text('A',style: TextStyle(fontSize: 14),),
-                    Text('A',style: TextStyle(fontSize: 20),),
-                  ],isSelected: isSelected,
-                  onPressed: (index){
-                    for(var i=0;i<isSelected.length;i++){
-                      if(i==index){
-                        isSelected[i]=true;
-                      }else{
-                        isSelected[i]=false;
+                SizedBox(
+                  child:ToggleButtons(
+                    fillColor: Colors.orange,
+                    color:Colors.green,
+                    children: [
+                      Text('A',style: TextStyle(fontSize: 14),),
+                      Text('A',style: TextStyle(fontSize: 20),),
+                    ],isSelected: isSelected,
+                    onPressed: (index){
+                      for(var i=0;i<isSelected.length;i++){
+                        if(i==index){
+                          isSelected[i]=true;
+                        }else{
+                          isSelected[i]=false;
+                        }
                       }
-                    }
-                    fontSize=getFontSize(index);
-                    setState(() {
+                      fontSize=getFontSize(index);
+                      setState(() {
 
-                    });
-                  },
+                      });
+                    },
+                  ),
                 ),
+
                 Container(
                   color: Colors.deepOrange,
                   child: Column(
                       children: <Widget>[
                         Text(
                           'Navigation',
-                          style: TextStyle(fontSize: fontSize*1.0),
+                          style: TextStyle(fontSize: 5+fontSize*1.0,color: Colors.white,fontWeight: FontWeight.bold),
                         ),
                         CheckboxListTile(
                           secondary: const Icon(Icons.circle),
@@ -95,7 +99,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           },
                         ),
                         Text(
-                          'Scan Object',style: TextStyle(fontSize: fontSize*1.0),
+                          'Scan Object',style: TextStyle(fontSize: 5+fontSize*1.0,color: Colors.white,fontWeight: FontWeight.bold),
                         ),
                         CheckboxListTile(
                           secondary: const Icon(Icons.circle),

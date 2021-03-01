@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'settings.dart';
 import 'signup.dart';
+import 'home.dart';
+import 'landingScreen.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -12,14 +16,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: <String,WidgetBuilder>{
-        '/signup':(BuildContext context)=> new SignupPage()
+        '/signup':(BuildContext context)=> new SignupPage(),
+        '/home':(BuildContext context) =>new HomePage(),
+        '/settings':(BuildContext context) =>new SettingsPage(),
+        '/landingScreen':(BuildContext context) =>new LandingScreen()
       },
+
       home:new MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget{
+
   @override
   _MyHomePageState createState()=> new _MyHomePageState();
 }
@@ -87,10 +96,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Material(
                     borderRadius: BorderRadius.circular(20.0),
                     shadowColor: Colors.deepOrangeAccent,
-                    color: Colors.deepOrange,
                     elevation: 7.0,
-                    child: GestureDetector(
-                      onTap: (){},
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed))
+                              return Colors.yellow;
+                            return Colors.deepOrange; // Use the component's default.
+                          },
+                        ),
+                      ),
+                      onPressed: (){
+                        Navigator.of(context).pushNamed('/home');
+                      },
                       child: Center(
                         child: Text('SIGN IN',
                           style: TextStyle(
