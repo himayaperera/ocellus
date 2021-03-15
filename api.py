@@ -24,6 +24,11 @@ books = [
      'published': '1975'}
 ]
 
+@app.route('/api',methods=['GET'])
+def hello_world():
+    d={}
+    d['Query']= str(request.args['Query'])
+    return jsonify(d)
 
 
 @app.route('/', methods=['GET'])
@@ -63,5 +68,33 @@ def api_id():
 @app.route('/get_image')
 def get_image():
     return send_file('cat.jpg', mimetype='image/gif')
+
+@app.route('/hi')
+def hi():
+    return jsonify(message='hi you')
+
+@app.route('/img', methods = ['GET', 'POST'])
+def post_image(img_file):
+    """ post image and return the response """
+    img = open(img_file, 'rb').read()
+    response = requests.post(URL, data=img, headers=headers)
+    return response
+
+@app.route('/parameters')
+def parameters():
+    name=request.args.get('name')
+    age= int(request.args.get('age'))
+    if age<18:
+        return jsonify(message='sorry you arent old enough'+name),404
+    else:
+        return jsonify(message='congradulations')
+
+@app.route('/values/<string:name>/<int:age>')
+def values(name:str,age:int):
+    if age<18:
+        return jsonify(message='sorry you arent old enough '+name),404
+    else:
+        return jsonify(message='congradulations')
+    
 
 app.run()
