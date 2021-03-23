@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 
 class LandingScreen extends StatefulWidget {
   @override
@@ -12,50 +15,45 @@ class LandingScreen extends StatefulWidget {
 
 class _LandingScreenState extends State<LandingScreen> {
   PickedFile imageFile;
-  // _openGallery(BuildContext context) async{
-  //   var picture =await ImagePicker().getImage(source: ImageSource.gallery);
-  //   this.setState(() {
-  //     imageFile= picture;
-  //   });
-  //   Navigator.of(context).pop();
-  // }
+  Dio dio=new Dio();
+
+
   _openCamera(BuildContext context) async{
+    //holds the image taken by the camera
     var picture =await ImagePicker().getImage(source: ImageSource.camera);
-    this.setState(() {
-      imageFile= picture;
+    if(picture !=null) {
+      this.setState(() {
+        imageFile = picture;
+      });
+    }
+    try{
+      //Extracting the file name from the file
+      String filename=imageFile.path.split('/').last;
+    FormData formData=new FormData.fromMap({
+      "image":
+    await MultipartFile.fromFile(imageFile.path,filename:filename,contentType: new MediaType('image','png')),
+    "type":"image/png"
     });
-    // Navigator.of(context).pop();
+    //sending to the server
+      Response response = await dio.post("path",data:formData,options: Options(
+        headers: {
+          "accept" :"*/*",
+    "Authorization" : "Bearer accesstoken",
+    "Content-Type":"multipart/form-data"
+    }
+    ));
+    }
+    catch(e){
+      print(e);
+    }
+
   }
-  // Future<void>_showChoiceDialog(BuildContext context){
-  //   return showDialog(context:context,builder:(BuildContext context){
-  //     return AlertDialog(
-  //       title: Text("Make a Choice"),
-  //       content: SingleChildScrollView(
-  //         child:ListBody(
-  //           children: <Widget>[
-  //             // GestureDetector(
-  //             //   child: Text("Gallery"),
-  //             //   onTap: (){
-  //             //     _openGallery(context);
-  //             //   },
-  //             // ),
-  //             GestureDetector(
-  //               child: Text("Camera"),
-  //               onTap: (){
-  //                 _openCamera(context);
-  //               },
-  //             )
-  //           ],
-  //         ) ,
-  //       ),
-  //     );
-  //   });
-  // }
   Widget _decideImageView(){
     if(imageFile==null){
       return Text("No selected Image");
     }else{
       return Image.file(File(imageFile.path), width: 500, height: 400);
+
     }
   }
   @override
