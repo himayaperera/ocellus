@@ -10,25 +10,25 @@ const storage = multer.diskStorage({
 });
 const uploadImg = multer({storage: storage}).single('image');
 
-//import tea model
-const Tea = require('../models/image');
-// newTea function for post image route
-const newImage = (req, res, next) => {
-    res.json({message: "POST new image"}); // dummy function for now
-};
+//import Image model
+const Image = require('../models/image');
+// newImage function for post image route
+// const newImage = (req, res, next) => {
+//     res.json({message: "POST new image"}); // dummy function for now
+// };
 const newImage2 = (req, res, next) => {
     res.json({message: "POST new image2"}); // dummy function for now
 };
 
-//GET '/tea'
-const getAllTea = (req, res, next) => {
-   //check if the tea name already exists in db
-    //Tea.findOne({name:req.body.name},(data)=>{
+//GET '/Image'
+const getAllImage = (req, res, next) => {
+   //check if the Image name already exists in db
+    //Image.findOne({name:req.body.name},(data)=>{
 
-        //if tea not in db, add it
+        //if Image not in db, add it
         //if(data===null){
-            //create a new tea object using the Tea model and req.body
-            const newTea = new Tea({
+            //create a new Image object using the Image model and req.body
+            const newImage = new Image({
                 name:req.body.name,
                 image: req.body.image, // placeholder for now
                 description: req.body.description,
@@ -39,27 +39,27 @@ const getAllTea = (req, res, next) => {
             })
 
             // save this object to database
-            //newTea.save((err, data)=>{
+            //newImage.save((err, data)=>{
             //    if(err) return res.json({Error: err});
             //    return res.json(data);
             //})
-        //if tea is in db, return a message to inform it exists            
+        //if Image is in db, return a message to inform it exists            
         //}else{
-            return res.json(newTea);
+            return res.json(newImage);
         //}
     //})    
 };
 
-//POST '/tea'
-const newTea = (req, res, next) => {
-    //check if the tea name already exists in db
-    Tea.findOne({name:req.body.name},(data)=>{
+//POST '/Image'
+const newImage = (req, res, next) => {
+    //check if the Image name already exists in db
+    Image.findOne({name:req.body.name},(data)=>{
 
-        //if tea not in db, add it
+        //if Image not in db, add it
         if(data===null){
             console.log("new object is creating");
-            //create a new tea object using the Tea model and req.body
-            const newTea = new Tea({
+            //create a new Image object using the Image model and req.body
+            const newImage = new Image({
                 name:req.body.name,
                 image: req.file.path // placeholder for now
                 //description: req.body.description,
@@ -70,45 +70,45 @@ const newTea = (req, res, next) => {
             })
 
             // save this object to database
-            newTea.save((err, data)=>{
+            newImage.save((err, data)=>{
                 if(err) return res.json({Error: err});
-                console.log("saved");
+                //console.log("saved");
                return res.json(data);
                
             })
-        //if tea is in db, return a message to inform it exists            
+        //if Image is in db, return a message to inform it exists            
         }else{
-            console.log("not saved");
-            return res.json(newTea);
+            //console.log("not saved");
+            return res.json(newImage);
             
         }
     }) 
   }
 
-//DELETE '/tea'
-const deleteAllTea = (req, res, next) => {
-    res.json({message: "DELETE all tea"});
+//DELETE '/Image'
+const deleImagellImage = (req, res, next) => {
+    res.json({message: "DELETE all Image"});
 };
 
-//GET '/tea/:name'
-const getOneTea = (req, res, next) => {
-    res.json({message: "GET 1 tea"});
+//GET '/Image/:name'
+const getOneImage = (req, res, next) => {
+    res.json({message: "GET 1 Image"});
 };
 
-//POST '/tea/:name'
+//POST '/Image/:name'
 const newComment = (req, res, next) => {
-    res.json({message: "POST 1 tea comment"});
+    res.json({message: "POST 1 Image comment"});
 };
 
-//DELETE '/tea/:name'
-const deleteOneTea = (req, res, next) => {
-    res.json({message: "DELETE 1 tea"});
+//DELETE '/Image/:name'
+const deleteOneImage = (req, res, next) => {
+    res.json({message: "DELETE 1 Image"});
 };
 
 
-module.exports = {newImage,newImage2,getAllTea, 
-    newTea,
-    deleteAllTea,
-    getOneTea,
+module.exports = {newImage,newImage2,getAllImage, 
+    newImage,
+    deleImagellImage,
+    getOneImage,
     newComment,
-    deleteOneTea,uploadImg};
+    deleteOneImage,uploadImg};
