@@ -24,8 +24,8 @@ except ImportError:
 """Below block of code doesn't need to be run for the algorithm to work"""
 
 #testing for the output 
-image = cv2.cvtColor(cv2.imread(r'/content/drive/MyDrive/Colab Notebooks/testImages/ParallaxParagraph.JPG'), cv2.COLOR_BGR2GRAY )
-cv2_imshow(image)
+#image = cv2.cvtColor(cv2.imread(r'/content/drive/MyDrive/Colab Notebooks/testImages/ParallaxParagraph.JPG'), cv2.COLOR_BGR2GRAY )
+#cv2_imshow(image)
 
 """Below block runs to give the extracted text from the image.
 Make sure to either upload and image or mount drive and specify the image path for the 'image' variable
