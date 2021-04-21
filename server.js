@@ -1,16 +1,16 @@
- //import mongoose
- const mongoose = require('mongoose');
+//  //import mongoose
+//  const mongoose = require('mongoose');
 
  
- //establish connection to database
- const MongoClient = require('mongodb').MongoClient;
- const uri = "mongodb+srv://himaya:Himaya2018@cluster0.wglke.mongodb.net/Tea?retryWrites=true&w=majority";
- const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
- client.connect(err => {
-   const collection = client.db("test").collection("devices");
-   // perform actions on the collection object
-   client.close();
- });
+//  //establish connection to database
+//  const MongoClient = require('mongodb').MongoClient;
+//  const uri = "mongodb+srv://himaya:Himaya2018@cluster0.wglke.mongodb.net/Tea?retryWrites=true&w=majority";
+//  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+//  client.connect(err => {
+//    const collection = client.db("test").collection("devices");
+//    // perform actions on the collection object
+//    client.close();
+//  });
 
  
 const express = require("express");
