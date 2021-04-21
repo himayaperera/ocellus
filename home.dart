@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'openMap.dart';
-import 'landingScreen.dart';
+import 'MyImagePicker.dart';
 
 
 class HomePage extends StatefulWidget {

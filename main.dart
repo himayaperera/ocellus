@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'settings.dart';
 import 'signup.dart';
 import 'home.dart';
-import 'landingScreen.dart';
+import 'MyImagePicker.dart';
 
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         '/signup':(BuildContext context)=> new SignupPage(),
         '/home':(BuildContext context) =>new HomePage(),
         '/settings':(BuildContext context) =>new SettingsPage(),
-        '/landingScreen':(BuildContext context) =>new LandingScreen()
+        '/landingScreen':(BuildContext context) =>new MyImagePicker()
       },
 
       home:new MyHomePage(),
