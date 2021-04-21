@@ -1,0 +1,1 @@
+add the yolov5.pt into pythonProject_detect
