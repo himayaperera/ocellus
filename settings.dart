@@ -42,8 +42,8 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Column(
               children: <Widget>[
                 Text(
-                  'Filters',
-                  style: TextStyle(fontSize: 10+fontSize*1.0),
+                  'Settings',
+                  style: TextStyle(fontSize: 10+fontSize*1.0, color: Colors.deepOrange),
                 ),
                 SizedBox(
                   child:ToggleButtons(
