@@ -1,2 +1,8 @@
 # ocellus
-an application to help navigate for the blind community through object detection by team Zeal
+by team Zeal <br>
+an application to help navigate for the blind community through object detection
+
+#backend node 
+install mongoose - npm install mongoose
+install multer locally - npm i multer
+create an uploads folder
